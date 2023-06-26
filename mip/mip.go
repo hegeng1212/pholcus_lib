@@ -49,7 +49,11 @@ var Mip = &Spider{
 	SubNamespace: nil,
 	RuleTree: &RuleTree{
 		Root: func(ctx *Context) {
-			ctx.Aid(map[string]interface{}{"loop": [2]int{0, 10}, "Rule": "生成请求"}, "生成请求")
+			limit := ctx.GetLimit()
+			if limit == 0 {
+				limit = 1
+			}
+			ctx.Aid(map[string]interface{}{"loop": [2]int{0, limit}, "Rule": "生成请求"}, "生成请求")
 		},
 
 		Trunk: map[string]*Rule{
@@ -68,19 +72,19 @@ var Mip = &Spider{
 						header := make(http.Header)
 						l := len(agent.UserAgents["common"])
 						r := rand.New(rand.NewSource(time.Now().UnixNano()))
-						header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36")//agent.UserAgents["common"][r.Intn(l)])
+						header.Add("User-Agent", agent.UserAgents["common"][r.Intn(l)])
 						header.Add("Connection", "keep-alive")
 						header.Add("Accept-Encoding", "gzip, deflate, br")
 						header.Add("Accept", "*/*")
 						header.Add("Host", "www.baidu.com")
 						fmt.Println(fmt.Printf("baidu header %#v %#v %#v ", header, l, r))
-						keyint++
 						ctx.AddQueue(&request.Request{
 							Url:        "https://wapask-mip.39.net/bdsshz/question/"+fmt.Sprintf("%d", keyint)+".html?v=" + strconv.Itoa(50*loop[0]),
 							Rule:       aid["Rule"].(string),
 							Reloadable: duplicatable,
 							Header: header,
 						})
+						keyint++
 					}
 					return nil
 				},

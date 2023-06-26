@@ -66,7 +66,7 @@ var BaiduSearch = &Spider{
 						header := make(http.Header)
 						l := len(agent.UserAgents["common"])
 						r := rand.New(rand.NewSource(time.Now().UnixNano()))
-						header.Add("User-Agent", agent.UserAgents["common"][r.Intn(l)])
+						header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36")//agent.UserAgents["common"][r.Intn(l)])
 						fmt.Println(fmt.Printf("baidu header %#v", header))
 						ctx.AddQueue(&request.Request{
 							Url:        "http://www.baidu.com/s?ie=utf-8&nojc=1&wd=" + ctx.GetKeyin() + "&rn=50&pn=" + strconv.Itoa(50*loop[0]),

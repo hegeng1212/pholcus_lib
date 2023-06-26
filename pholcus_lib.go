@@ -4,6 +4,7 @@ import (
 	_ "github.com/hegeng1212/pholcus_lib/IJGUC"
 	_ "github.com/hegeng1212/pholcus_lib/alibaba"
 	_ "github.com/hegeng1212/pholcus_lib/area_codes"
+	_ "github.com/hegeng1212/pholcus_lib/mip"
 	_ "github.com/hegeng1212/pholcus_lib/baidunews"
 	_ "github.com/hegeng1212/pholcus_lib/baidusearch"
 	_ "github.com/hegeng1212/pholcus_lib/car_home"

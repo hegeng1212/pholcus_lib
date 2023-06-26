@@ -23,7 +23,7 @@ import (
 	"strings"
 
 	// 其他包
-	// "fmt"
+	"fmt"
 	"math/rand"
 	"math"
 	"net/http"
@@ -67,10 +67,12 @@ var BaiduSearch = &Spider{
 						l := len(agent.UserAgents["common"])
 						r := rand.New(rand.NewSource(time.Now().UnixNano()))
 						header.Add("User-Agent", agent.UserAgents["common"][r.Intn(l)])
+						fmt.Println(fmt.Printf("baidu header %#v", header))
 						ctx.AddQueue(&request.Request{
 							Url:        "http://www.baidu.com/s?ie=utf-8&nojc=1&wd=" + ctx.GetKeyin() + "&rn=50&pn=" + strconv.Itoa(50*loop[0]),
 							Rule:       aid["Rule"].(string),
 							Reloadable: duplicatable,
+							Header: header,
 						})
 					}
 					return nil

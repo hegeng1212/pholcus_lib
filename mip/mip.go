@@ -107,6 +107,7 @@ var Mip = &Spider{
 					title := query.Find(".question-box >h2").Text()
 					content := query.Find(".doctor-replay-text >p").Text()
 					href := ctx.Request.Url
+					fmt.Println(fmt.Printf("mip 搜索结果 %s %#v %#v ", query, title, content))
 					// 结果存入Response中转
 					ctx.Output(map[int]interface{}{
 						0: strings.Trim(title, " \t\n"),

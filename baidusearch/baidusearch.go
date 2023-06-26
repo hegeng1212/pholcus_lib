@@ -24,6 +24,7 @@ import (
 
 	// 其他包
 	// "fmt"
+	"math/rand"
 	"math"
 	"net/http"
 	"time"

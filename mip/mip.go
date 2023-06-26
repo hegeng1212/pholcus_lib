@@ -49,7 +49,7 @@ var Mip = &Spider{
 	SubNamespace: nil,
 	RuleTree: &RuleTree{
 		Root: func(ctx *Context) {
-			ctx.Aid(map[string]interface{}{"loop": [2]int{0, 1}, "Rule": "生成请求"}, "生成请求")
+			ctx.Aid(map[string]interface{}{"loop": [2]int{0, 10}, "Rule": "生成请求"}, "生成请求")
 		},
 
 		Trunk: map[string]*Rule{
@@ -57,6 +57,8 @@ var Mip = &Spider{
 			"生成请求": {
 				AidFunc: func(ctx *Context, aid map[string]interface{}) interface{} {
 					var duplicatable bool
+					keyin := ctx.GetKeyin()
+					keyint, _ := strconv.Atoi(keyin)
 					for loop := aid["loop"].([2]int); loop[0] < loop[1]; loop[0]++ {
 						if loop[0] == 0 {
 							duplicatable = true
@@ -72,8 +74,9 @@ var Mip = &Spider{
 						header.Add("Accept", "*/*")
 						header.Add("Host", "www.baidu.com")
 						fmt.Println(fmt.Printf("baidu header %#v %#v %#v ", header, l, r))
+						keyint++
 						ctx.AddQueue(&request.Request{
-							Url:        "https://wapask-mip.39.net/bdsshz/question/"+ctx.GetKeyin()+".html?v=" + strconv.Itoa(50*loop[0]),
+							Url:        "https://wapask-mip.39.net/bdsshz/question/"+fmt.Sprintf("%d", keyint)+".html?v=" + strconv.Itoa(50*loop[0]),
 							Rule:       aid["Rule"].(string),
 							Reloadable: duplicatable,
 							Header: header,

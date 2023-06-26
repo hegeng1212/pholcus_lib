@@ -4,7 +4,7 @@ package pholcus_lib
 import (
 	"github.com/hegeng1212/pholcus/app/downloader/request" //必需
 	. "github.com/hegeng1212/pholcus/app/spider"           //必需
-	"github.com/hegeng1212/pholcus/common/goquery"         //DOM解析
+	//"github.com/hegeng1212/pholcus/common/goquery"         //DOM解析
 	"github.com/hegeng1212/pholcus/logs"                   //信息输出
 	"github.com/hegeng1212/pholcus/app/downloader/surfer/agent"
 	// . "github.com/hegeng1212/pholcus/app/spider/common"          //选用
@@ -89,7 +89,7 @@ var Mip = &Spider{
 						return
 					}
 					// 调用指定规则下辅助函数
-					ctx.Aid(map[string]interface{}{"loop": [2]int{1, total}, "Rule": "搜索结果"})
+					ctx.Aid(map[string]interface{}{"loop": [2]int{1, 1}, "Rule": "搜索结果"})
 					// 用指定规则解析响应流
 					ctx.Parse("搜索结果")
 				},

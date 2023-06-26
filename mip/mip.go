@@ -79,7 +79,7 @@ var Mip = &Spider{
 						header.Add("Host", "www.baidu.com")
 						fmt.Println(fmt.Printf("baidu header %#v %#v %#v ", header, l, r))
 						ctx.AddQueue(&request.Request{
-							Url:        "https://wapask-mip.39.net/bdsshz/question/"+fmt.Sprintf("%d", keyint)+".html?v=" + strconv.Itoa(50*loop[0]),
+							Url:        "https://wapask-mip.39.net/bdsshz/question/"+fmt.Sprintf("%d", keyint)+".html?v=" + strconv.Itoa(r.Intn(l)*loop[0]),
 							Rule:       aid["Rule"].(string),
 							Reloadable: duplicatable,
 							Header: header,

@@ -67,6 +67,12 @@ var BaiduSearch = &Spider{
 						l := len(agent.UserAgents["common"])
 						r := rand.New(rand.NewSource(time.Now().UnixNano()))
 						header.Add("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36")//agent.UserAgents["common"][r.Intn(l)])
+						header.Add("Connection", "keep-alive")
+						header.Add("Accept-Encoding", "gzip, deflate, br")
+						header.Add("Accept", "*/*")
+						header.Add("Host", "www.baidu.com")
+						header.Add("Sec-Ch-Ua", "\"Not.A/Brand\";v=\"8\", \"Chromium\";v=\"114\", \"Google Chrome\";v=\"114\"")
+						header.Add("Cookie", "BAIDUID=F6F057C0FD06815506C689C33D69B891:FG=1; BAIDUID_BFESS=F6F057C0FD06815506C689C33D69B891:FG=1; BIDUPSID=F6F057C0FD0681557CCD7D5D69E9D91D; H_PS_PSSID=36546_38860_38798_38908_38792_38841_38831_38918_38816_38838_38638_26350_38568_22160; PSINO=1; PSTM=1687752449; delPer=0; BDSVRTM=21; BD_CK_SAM=1")
 						fmt.Println(fmt.Printf("baidu header %#v %#v %#v ", header, l, r))
 						ctx.AddQueue(&request.Request{
 							Url:        "http://www.baidu.com/s?ie=utf-8&nojc=1&wd=" + ctx.GetKeyin() + "&rn=50&pn=" + strconv.Itoa(50*loop[0]),

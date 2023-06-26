@@ -110,9 +110,9 @@ var Mip = &Spider{
 					fmt.Println(fmt.Printf("mip 搜索结果 %s %#v %#v ", query, title, content))
 					// 结果存入Response中转
 					ctx.Output(map[int]interface{}{
-						0: strings.Trim(title, " \t\n"),
-						1: strings.Trim(content, " \t\n"),
-						3: href,
+						0: strings.Replace(strings.Trim(title, " \t\n"), ",", "，", 0),
+						1: strings.Replace(strings.Trim(content, " \t\n"), ",", "，", 0),
+						2: href,
 					})
 				},
 			},
